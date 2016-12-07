@@ -1,0 +1,2 @@
+module LongTasksHelper
+end

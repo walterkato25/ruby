@@ -1,0 +1,3 @@
+class SimpleTask < Task
+	
+end

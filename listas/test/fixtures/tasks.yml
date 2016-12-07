@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyString
+  state: MyString
+  priority: MyString
+  validation_start: 2016-12-06
+  validation_end: 2016-12-06
+  percentage: 1.5
+  list: one
+
+two:
+  description: MyString
+  state: MyString
+  priority: MyString
+  validation_start: 2016-12-06
+  validation_end: 2016-12-06
+  percentage: 1.5
+  list: two

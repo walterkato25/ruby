@@ -1,0 +1,2 @@
+class TemporalTask < Task
+end
