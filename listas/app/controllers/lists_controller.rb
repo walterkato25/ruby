@@ -16,16 +16,16 @@ class ListsController < ApplicationController
 	end
 
 	def edit
-		@list = List.find_by(params[:url])
+		@list = List.find_by(url:params[:id])
 	end
 	
 	def show
-    	 @list = List.find_by(params[:url])
+    	 @list = List.find_by(url:params[:id])
 
  	end
 	
 	def update
-		@list = List.find_by(params[:url])
+		@list = List.find_by(url:params[:id])
 		if @list.update(list_params)
 			redirect_to @list
 		else
@@ -34,7 +34,7 @@ class ListsController < ApplicationController
 	end
 
 	def destroy
-		@list = List.find_by(params[:url])
+		@list = List.find_by(url:params[:id])
 		@list.destroy
 		redirect_to lists_path
 	end
