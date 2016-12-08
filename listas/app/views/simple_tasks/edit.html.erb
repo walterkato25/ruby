@@ -1,5 +1,5 @@
-<h2>create simple task:</h2>
-<%= form_for @simpleTask, url: { :action => :create} do |f| %>
+<h2>Editar una tarea:</h2>
+<%= form_for @simpleTask, url: { :action => :update} do |f| %>
 <p>
     <%= f.label :description %><br>
     <%= f.text_field :description %>

@@ -3,11 +3,7 @@ Rails.application.routes.draw do
 
   resources :lists do
   	resources :simple_tasks 
-  end
-  resources :lists do
-   resources :long_tasks 
-  end
-  resources :lists do 
+    resources :long_tasks 
     resources :temporal_tasks
   end  
   

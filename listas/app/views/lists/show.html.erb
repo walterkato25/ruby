@@ -1,37 +1,47 @@
-<p>
-  <strong>Nombre:</strong>
-  <%= @list.name %>
-</p>
- 
-<p>
-  <strong>Url:</strong>
-  <%= @list.url %>
-</p>
+          <p>
+            <strong>Nombre:</strong>
+            <%= @list.name %>
+          </p>
+           
+          <p>
+            <strong>Url:</strong>
+            <%= @list.url %>
+          </p>
 
-<h2>Tasks</h2>
-<% @list.tasks.each do |task| %>
-  <p>
-    <strong>Description:</strong>
-    <%= task.description %>
-  </p>
- 
-  <p>
-    <strong>State:</strong>
-    <%= task.state %>
-  </p>
-  <p>
-    <strong>Priority:</strong>
-    <%= task.priority %>
-  </p>
-  <p>
-    <strong>Type:</strong>
-    <%= task.type %>
-  </p>
-<% end %>
+          
+          <% @list.tasks.each do |task| %>
+            <p>
+              <strong>Description:</strong>
+              <%= task.description %>
+            </p>
+           
+            <p>
+              <strong>State:</strong>
+              <%= task.state %>
+            </p>
+            <p>
+              <strong>Priority:</strong>
+              <%= task.priority %>
+            </p>
+            <p>
+              <strong>Type:</strong>
+              <%= task.type %>
+            </p>
+            <p>
+              <strong>Id del task:</strong>
+              <%= task.id %>
+            </p>
+            <%= link_to 'Edit', [:edit, task.list,task] %>  
+            <%= link_to 'Destroy', [task.list, task],
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' } %>
+            <br>
+          <% end %>
 
-<p>
-<%= link_to 'New simple task', new_list_simple_task_path(@list) %>
-<%= link_to 'New temporal task', new_list_temporal_task_path(@list) %>
-<%= link_to 'New long task', new_list_long_task_path(@list) %>
-</p>
-<%= link_to 'Back', lists_path %>
+          
+          <%= link_to 'New simple task', new_list_simple_task_path(@list) , class: 'btn btn-link'%>
+          <%= link_to 'New temporal task', new_list_temporal_task_path(@list) , class: 'btn btn-link'%>
+          <%= link_to 'New long task', new_list_long_task_path(@list) , class: 'btn btn-link'%>
+          
+          <%= link_to 'Back', lists_path %>
+  

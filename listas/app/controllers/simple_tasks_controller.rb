@@ -1,15 +1,47 @@
 class SimpleTasksController < ApplicationController
+	
+	def index
+		@simpleTask = SimpleTask.all
+	end
+
 	def new
 		@simpleTask = SimpleTask.new
 	end
+
+	def edit
+		#@list = List.find_by(url:params[:list_id])
+		@simpleTask = SimpleTask.find(params[:id])
+
+	end
+	def show
+
+	end
+
 	def create
-	    @list = List.find_by(params[:list_url])
-	    @list_id = List.find_by(params[:list_url]).id
-	    @simple_task = SimpleTask.new(simple_task_params)
-	    @simple_task.list_id = @list_id
-	    @simple_task.save()
+
+	    @list = List.find_by(url:params[:list_id])
+	    @simpleTask = SimpleTask.new(simple_task_params)
+	    @simpleTask.list_id = @list.id
+	    @simpleTask.save()
 	    
 	    redirect_to list_path(@list)
+	end
+
+	def update
+		@simpleTask = SimpleTask.find(params[:id])
+		@list = List.find(@simpleTask.list_id)
+		if @simpleTask.update(simple_task_params)
+			redirect_to @list
+		else
+			render 'edit'
+		end
+	end
+
+	def destroy
+		@list = List.find_by(url:params[:list_id])
+		@task = SimpleTask.find(params[:id])
+		@task.destroy
+		redirect_to list_path(@list)
 	end
  
 	private
@@ -17,3 +49,15 @@ class SimpleTasksController < ApplicationController
 	      params.require(:simple_task).permit(:description, :state, :priority)
 	    end
 end
+
+
+
+
+
+
+
+
+
+
+
+

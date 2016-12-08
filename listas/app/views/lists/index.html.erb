@@ -1,22 +1,27 @@
-<h1>Listados:</h1>
+<html>
+  <body>
+    <div id="main-container" class="container-fluid">
+      <div id="main-content" class="col-xs-12">
+        <h1>Listados:</h1>
  
-<table>
-<%= link_to 'Nueva lista', new_list_path %>
-  <tr>
-    <th>Nombre</th>
-    <th>Url</th>
-    <th colspan="3"></th>
-  </tr>
- 
-  <% @lists.each do |list| %>
-    <tr>
-      <td><%= list.name %></td>
-      <td><%= list.url %></td>
-      <td><%= link_to 'Show', list_path(list) %></td>
-      <td><%= link_to 'Edit', edit_list_path(list) %></td>
-      <td><%= link_to 'Destroy', list,
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-</table>
+          <table class="table">
+            <%= link_to 'Nueva lista', new_list_path %>
+              <tr>
+                <th>Nombre</th>
+                <th>Url</th>
+                <th colspan="3"></th>
+              </tr>
+             
+              <% @lists.each do |list| %>
+                <tr>
+                  <td><%= list.name %></td>
+                  <td><%= list.url %></td>
+                  <td><%= link_to 'Show', list_path(list) %></td>
+                  <td><%= link_to 'Edit', edit_list_path(list) %></td>
+                  <td><%= link_to 'Destroy', list_path(list),
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+            <% end %>
+          </table>
+      </div>
