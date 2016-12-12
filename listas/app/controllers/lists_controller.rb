@@ -1,10 +1,11 @@
 class ListsController < ApplicationController
-	before_action :set_cookies
+
 	def index
+		set_cookies
+		
+		@lists = List.where(url: cookies[:list].split(","))
 		#@lists = List.all
-		cookies[:list_url].each do |url|
-			@lists = List.find_by(url:url)
-		end
+		#render 'new'
 	end
 
 
@@ -14,6 +15,8 @@ class ListsController < ApplicationController
 
 	def new
 		@list = List.new
+		set_cookies
+		@cookies = cookies[:list].split(",")
 	end
 
 	def edit
@@ -24,7 +27,7 @@ class ListsController < ApplicationController
 	def create
 		@list = List.new(list_params)
 		if @list.save
-			insert_into_cookie @list.url
+			insert_into_cookie @list
 			redirect_to @list	
 		else
 			render 'new'
@@ -42,22 +45,31 @@ class ListsController < ApplicationController
 	end
 
 	def destroy
-		#@list = List.find_by(url:params[:id])
+		@list = List.find_by(url:params[:id])
+		delete_from_cookie(@list)
 		@list.destroy
+
 		redirect_to lists_path
 	end
 
 
 	private
 		def set_cookies
-			if cookies[:list_url].nil?
-				cookies[:list_url]=Hash.new
-			end
+			cookies[:list] ||= ""
 		end
-		def insert_into_cookie(url)
-			cookies[:list_url].split(",") << url
-			cookies[:list_url] = cookie[:'list_url'].last(5)
-			cookies[:list_url] = array_to_string cookies[:'list_url']
+
+		def insert_into_cookie(list)	
+			@arrayCookie = cookies[:list].split(",")
+			@arrayCookie << list.url
+			@arrayCookie = @arrayCookie.last(5)
+			cookies[:list] = @arrayCookie.join(",")
+			
+		end
+
+		def delete_from_cookie(list)
+			@arrayCookie = cookies[:list].split(",")
+			@arrayCookie.delete(list.url)
+			cookies[:list] = @arrayCookie.join(",")
 		end
 
 		def list_params

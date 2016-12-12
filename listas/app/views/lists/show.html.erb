@@ -1,47 +1,32 @@
-          <p>
-            <strong>Nombre:</strong>
-            <%= @list.name %>
-          </p>
-           
-          <p>
-            <strong>Url:</strong>
-            <%= @list.url %>
-          </p>
+<div class = "well well-sm">
+  <h6>Nombre:<%= @list.name %></h6>
+  <h6>Url:<%= @list.url %></h6>
+</div>
+<table class="table sortable" id="taskTable" >
+  <tr>
+    <th>Descripcion</th>
+    <th>Estado</th>
+    <th>Prioridad</th>
+    <th>Tipo</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @list.tasks.each do |task| %>
+  <tr>
+    <td><%= task.description %></td>
+    <td><%= task.state %></td>
+    <td><%= task.priority %></td>
+    <td><%= task.type %></td>
+    <td><%= link_to 'Edit', [:edit, task.list,task] , class:'btn btn-info' %></td>
+    <td><%= link_to 'Destroy', [task.list, task],
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' }, class:'btn btn-danger' %></td>
+  </tr>
+  <% end %>
+</table>
 
-          
-          <% @list.tasks.each do |task| %>
-            <p>
-              <strong>Description:</strong>
-              <%= task.description %>
-            </p>
-           
-            <p>
-              <strong>State:</strong>
-              <%= task.state %>
-            </p>
-            <p>
-              <strong>Priority:</strong>
-              <%= task.priority %>
-            </p>
-            <p>
-              <strong>Type:</strong>
-              <%= task.type %>
-            </p>
-            <p>
-              <strong>Id del task:</strong>
-              <%= task.id %>
-            </p>
-            <%= link_to 'Edit', [:edit, task.list,task] %>  
-            <%= link_to 'Destroy', [task.list, task],
-                          method: :delete,
-                          data: { confirm: 'Are you sure?' } %>
-            <br>
-          <% end %>
-
-          
-          <%= link_to 'New simple task', new_list_simple_task_path(@list) , class: 'btn btn-link'%>
-          <%= link_to 'New temporal task', new_list_temporal_task_path(@list) , class: 'btn btn-link'%>
-          <%= link_to 'New long task', new_list_long_task_path(@list) , class: 'btn btn-link'%>
-          
-          <%= link_to 'Back', lists_path %>
+  <%= link_to 'New simple task', new_list_simple_task_path(@list) , class: 'btn btn-info'%>
+  <%= link_to 'New temporal task', new_list_temporal_task_path(@list) , class: 'btn btn-info'%>
+  <%= link_to 'New long task', new_list_long_task_path(@list) , class: 'btn btn-info'%>
   
+  <%= link_to 'Back', lists_path %>

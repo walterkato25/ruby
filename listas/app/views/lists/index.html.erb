@@ -1,11 +1,11 @@
 <html>
   <body>
-    <div id="main-container" class="container-fluid">
+    <div id="main-container" class="container-fluid" >
       <div id="main-content" class="col-xs-12">
-        <h1>Listados:</h1>
+        <h1>Lists:</h1>
  
           <table class="table">
-            <%= link_to 'Nueva lista', new_list_path %>
+            <%= link_to 'Nueva lista', new_list_path, id:"new_link", remote: true %>
               <tr>
                 <th>Nombre</th>
                 <th>Url</th>

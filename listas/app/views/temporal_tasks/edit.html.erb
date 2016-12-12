@@ -1,5 +1,5 @@
 <h2>Edit task:</h2>
-<%= form_for @simpleTask, url: { :action => :update} do |f| %>
+<%= form_for @temporalTask, url: { :action => :update} do |f| %>
 <p>
     <%= f.label :description %><br>
     <%= f.text_field :description %>
@@ -15,6 +15,16 @@
     <%= f.text_field :priority %>
   </p>
 
+  <p>
+    <%= f.label :validation_start %><br>
+    <%= f.text_field :validation_start, hide_label: false, class: 'datepicker' %>
+  </p>
+
+  <p>
+    <%= f.label :validation_end %><br>
+    <%= f.text_field :validation_end, hide_label: true, class: 'datepicker' %>
+  </p>
+  
   <p>
     <%= f.submit %>
   </p>

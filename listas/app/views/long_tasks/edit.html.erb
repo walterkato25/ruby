@@ -1,6 +1,6 @@
 <h2>Edit task:</h2>
-<%= form_for @simpleTask, url: { :action => :update} do |f| %>
-<p>
+<%= form_for @longTask, url: { :action => :update} do |f| %>
+ <p>
     <%= f.label :description %><br>
     <%= f.text_field :description %>
   </p>
@@ -15,6 +15,11 @@
     <%= f.text_field :priority %>
   </p>
 
+  <p>
+    <%= f.label :percentage %><br>
+    <%= f.text_field :percentage %>
+  </p>
+  
   <p>
     <%= f.submit %>
   </p>
