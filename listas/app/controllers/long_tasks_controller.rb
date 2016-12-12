@@ -23,9 +23,12 @@ class LongTasksController < ApplicationController
 	    @list = List.find_by(url:params[:list_id])
 	    @longTask = LongTask.new(long_task_params)
 	    @longTask.list_id = @list.id
-	    @longTask.save()
+	    if @longTask.save()
+	    	redirect_to list_path(@list)
+	    else
+	    	render 'new'
+	    end   
 	    
-	    redirect_to list_path(@list)
 	end
 
 	def update

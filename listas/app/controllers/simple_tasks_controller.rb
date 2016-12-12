@@ -22,9 +22,13 @@ class SimpleTasksController < ApplicationController
 	    @list = List.find_by(url:params[:list_id])
 	    @simpleTask = SimpleTask.new(simple_task_params)
 	    @simpleTask.list_id = @list.id
-	    @simpleTask.save()
+	    if @simpleTask.save
+	    	redirect_to list_path(@list)
+	    else
+	    	render 'new'
+	    end
 	    
-	    redirect_to list_path(@list)
+	    
 	end
 
 	def update

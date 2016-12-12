@@ -24,9 +24,11 @@ class TemporalTasksController < ApplicationController
 	    @list = List.find_by(url:params[:list_id])
 	    @temporalTask = TemporalTask.new(temporal_task_params)
 	    @temporalTask.list_id = @list.id
-	    @temporalTask.save()
-	    
-	    redirect_to list_path(@list)
+	    if @temporalTask.save
+	    	redirect_to list_path(@list)
+	    else
+	    	render 'new'
+	    end
 	end
 
 	def update

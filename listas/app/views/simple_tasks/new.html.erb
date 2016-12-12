@@ -1,6 +1,19 @@
 <h2>New simple task:</h2>
 <%= form_for @simpleTask, url: { :action => :create} do |f| %>
-<p>
+  <% if @simpleTask.errors.any? %>
+              <div id="error_explanation">
+                <h2>
+                  <%= pluralize(@simpleTask.errors.count, "error") %> prohibited
+                  this simpleTask from being saved:
+                </h2>
+                <ul>
+                  <% @simpleTask.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+  <% end %>
+  <p>
     <%= f.label :description %><br>
     <%= f.text_field :description %>
   </p>

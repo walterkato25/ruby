@@ -1,5 +1,18 @@
   <h2>New temporal task:</h2>
   <%= form_for @temporalTask, url: { :action => :create} do |f| %>
+    <% if @temporalTask.errors.any? %>
+              <div id="error_explanation">
+                <h2>
+                  <%= pluralize(@temporalTask.errors.count, "error") %> prohibited
+                  this temporalTask from being saved:
+                </h2>
+                <ul>
+                  <% @temporalTask.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+  <% end %>
     <div class = "form-group">
         <p>
           <%= f.label :description %><br>
