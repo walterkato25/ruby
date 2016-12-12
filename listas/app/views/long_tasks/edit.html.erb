@@ -1,23 +1,35 @@
 <h2>Edit task:</h2>
 <%= form_for @longTask, url: { :action => :update} do |f| %>
- <p>
+  <% if @longTask.errors.any? %>
+              <div id="error_explanation">
+                <h2>
+                  <%= pluralize(@longTask.errors.count, "error") %> prohibited
+                  this longTask from being saved:
+                </h2>
+                <ul>
+                  <% @longTask.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+  <% end %>
+  <p>
     <%= f.label :description %><br>
     <%= f.text_field :description %>
   </p>
   
   <p>
     <%= f.label :state %><br>
-    <%= f.text_field :state %>
+    <%= f.select :state, ['Pediente','curso', 'Hecha'] %><br>
   </p>
   
   <p>
     <%= f.label :priority %><br>
-    <%= f.text_field :priority %>
+    <%= f.select :priority, ['alta', 'media','baja'] %>
   </p>
-
   <p>
-    <%= f.label :percentage %><br>
-    <%= f.text_field :percentage %>
+    <%= f.label :porcentage %><br>
+    <%= f.select :percentage, (0..100) %>%
   </p>
   
   <p>

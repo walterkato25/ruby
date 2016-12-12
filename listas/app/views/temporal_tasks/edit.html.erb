@@ -7,12 +7,12 @@
   
   <p>
     <%= f.label :state %><br>
-    <%= f.text_field :state %>
+    <%= f.select :state, ['Pediente','curso', 'Hecha'] %><br>
   </p>
   
   <p>
     <%= f.label :priority %><br>
-    <%= f.text_field :priority %>
+    <%= f.select :priority, ['alta', 'media','baja'] %>
   </p>
 
   <p>
